@@ -7,13 +7,13 @@ const ctrl = require('./data.ctrl');
 router.get('/', ctrl.getAllData);
 
 //삭제
-// router.delete('/:title', ctrl.destory)
+router.delete('/:id', ctrl.destory)
 
 //업로드
 router.post('/', ctrl.post)
 
 //수정
-// router.put('/:pTitle', ctrl.update)
+router.put('/:id', ctrl.update)
 
 // router.get('/:title', ctrl.show)
 
