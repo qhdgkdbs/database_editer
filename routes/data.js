@@ -15,6 +15,8 @@ router.post('/', ctrl.post)
 //수정
 router.put('/:id', ctrl.update)
 
-// router.get('/:title', ctrl.show)
+//수정페이지
+router.get('/editpage', ctrl.editpage)
+
 
 module.exports = router;

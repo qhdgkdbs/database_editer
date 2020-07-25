@@ -30,22 +30,20 @@ const destory = (req, res) => {
 
         // ( SINCE DELETE OPERATION IS IDEMPOTENT, NO NEED TO SPECIFY )
         // if(!output.result.n) return res.status(404).json({ error: "book not found" });
-        res.json({ message: "spot deleted" });
         
-        res.status(204).end();
+        res.status(204).redirect('/editpage');
     })
 }
 
 const post = (req, res) => {
+    console.log(req.body)
+
     const spot = new Spot(req.body)
 
     spot.save((err, userInfo) => {
         if(err) return res.json({success : false, err})
 
-        return res.status(200).json({
-            success : true
-        }
-        )
+        return res.status(200).redirect('/editpage');
     })
 }
 
@@ -72,15 +70,20 @@ const update = (req,res) => {
         data.save( (err) => {
             if(err) res.status(500).json({error: 'failed to update'});
             // if(err) console.log(err);
-            res.json({message: 'data updated'});
+            res.status(200).redirect('/editpage');
         });
     });
 
 }
   
+const editpage = (req, res) => {
+    console.log("heloo")
+    res.render('../views/index', { title: 'A' });
+}
   module.exports={
     getAllData,
     destory,
     post,
     update,
+    editpage,
 }
