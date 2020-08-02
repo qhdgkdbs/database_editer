@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>MapWeb DataBase Editer</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <!-- <link rel = "stylesheet" href="/stylesheets/style.css"> -->
+</head>
+<body>
+  <form action="http://localhost:3000/recomanded" method="post">
+    <div id="in_title">
+        <textarea name="spot" id="utitle" rows="1" cols="30" placeholder="spot" required></textarea><br>
+        <textarea name="des" id="utitle" rows="1" cols="30" placeholder="des" required></textarea><br>
+        <textarea name="moreLink" id="utitle" rows="1" cols="30" placeholder="moreLink" required></textarea><br>
+        <textarea name="picLink" id="utitle" rows="1" cols="30" placeholder="picLink" required></textarea><br>
+        <textarea name="lat" id="utitle" rows="1" cols="30" placeholder="lat" required></textarea><br>
+        <textarea name="lng" id="utitle" rows="1" cols="30" placeholder="lng" required></textarea><br>
+    </div>
+    <div class="bt_se">
+        <button type="submit">글 작성</button>
+    </div>
+    <br><br>
+  </form>
+  <div id='spotData'></div>
+    <script>
+      var dataList;
+      var url = "http://localhost:3000/recomanded";
+      $.ajax({
+        // url : "https://itjusttravel.herokuapp.com/file/register", // test.jsp 에서 받아옴
+        url : url,
+        dataType :"json", // 데이터타입을 json 으로 받아옴
+        success : function(data) {
+            dataList = data;
+            setContent();  
+        },
+        error : function(e) {
+            console.log(e.responseText);
+            console.log(e);
+        }
+      })
+      var setContent = function() {
+        
+        for(var target of dataList){
+          // console.log(target)
+          var content =`
+            <div class = "spot">이름 : ${target.spot}</div>
+            <div class = "des">설명 : ${target.des}</div>
+            <div class = "moreLink">링크 : ${target.moreLink}</div>
+            <div class = "picLink">사진 : ${target.picLink}</div>
+            <div class = "lat">위도 : ${target.lat}</div>
+            <div class = "lng">경도 : ${target.lng}</div>
+            <div class = "button">
+              <div class = "update" style = "float: left;">
+                <form class="contact-form" action="${url}/${target._id}?_method=put" method="post">
+                  <input type="text" id="spot" name="spot" value="${target.spot}">
+                  <input type="text" id="des" name="des" value="${target.des}">
+                  <input type="text" id="moreLink" name="moreLink" value="${target.moreLink}">
+                  <input type="text" id="picLink" name="picLink" value="${target.picLink}">
+                  <input type="text" id="lat" name="lat" value="${target.lat}">
+                  <input type="text" id="lng" name="lng" value="${target.lng}">
+                  <button type="submit">Submit</button>
+                </form>
+              </div>
+              <div class = "delete" style = "float: left;">
+                <form action="${url}/${target._id}?_method=delete" method="post">
+                  <a href="#" onclick="confirm('Do you want to delete this?')?this.parentElement.submit():null;">Delete</a>
+                </form>
+              </div>
+            </div>
+            <br>
+            <hr>
+          `
+          $("#spotData").append(content)
+        }
+      }
+
+    </script>
+</body>
+</html>

@@ -6,7 +6,7 @@ var logger = require('morgan');
 var methodOverride = require('method-override');
 
 var dataRouter = require('./routes/data');
-var editRouter = require('./routes/edit');
+var recomandedRouter = require('./routes/recomandedSpot');
 
 var app = express();
 
@@ -23,6 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method')); 
 
 app.use('/', dataRouter);
+app.use('/recomanded', recomandedRouter);
+
 // app.use('/edit', editRouter);
 
 // catch 404 and forward to error handler
