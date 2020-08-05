@@ -17,6 +17,9 @@
         <textarea name="picLink" id="utitle" rows="1" cols="30" placeholder="picLink" required></textarea><br>
         <textarea name="lat" id="utitle" rows="1" cols="30" placeholder="lat" required></textarea><br>
         <textarea name="lng" id="utitle" rows="1" cols="30" placeholder="lng" required></textarea><br>
+        <textarea name="tag1" id="utitle" rows="1" cols="30" placeholder="tag1" required></textarea>
+        <textarea name="tag2" id="utitle" rows="1" cols="30" placeholder="tag2" required></textarea>
+        <textarea name="tag3" id="utitle" rows="1" cols="30" placeholder="tag3" required></textarea><br>
     </div>
     <div class="bt_se">
         <button type="submit">글 작성</button>
@@ -44,21 +47,18 @@
         for(var target of dataList){
           // console.log(target)
           var content =`
-            <div class = "spot">이름 : ${target.spot}</div>
-            <div class = "des">설명 : ${target.des}</div>
-            <div class = "moreLink">링크 : ${target.moreLink}</div>
-            <div class = "picLink">사진 : ${target.picLink}</div>
-            <div class = "lat">위도 : ${target.lat}</div>
-            <div class = "lng">경도 : ${target.lng}</div>
             <div class = "button">
               <div class = "update" style = "float: left;">
                 <form class="contact-form" action="/${target._id}?_method=put" method="post">
-                  <input type="text" id="spot" name="spot" value="${target.spot}">
-                  <input type="text" id="des" name="des" value="${target.des}">
-                  <input type="text" id="moreLink" name="moreLink" value="${target.moreLink}">
-                  <input type="text" id="picLink" name="picLink" value="${target.picLink}">
-                  <input type="text" id="lat" name="lat" value="${target.lat}">
-                  <input type="text" id="lng" name="lng" value="${target.lng}">
+                  이름 : <input type="text" id="spot" name="spot" value="${target.spot}"><br>
+                  설명 : <input type="text" id="des" name="des" value="${target.des}"><br>
+                  링크 : <input type="text" id="moreLink" name="moreLink" value="${target.moreLink}"><br>
+                  사진 : <input type="text" id="picLink" name="picLink" value="${target.picLink}"><br>
+                  위도 : <input type="text" id="lat" name="lat" value="${target.lat}"><br>
+                  경도 : <input type="text" id="lng" name="lng" value="${target.lng}"><br>
+                  태그1 (서울) : <input type="text" id="tag1" name="tag1" value="${target.tag1}">
+                  태그2 (놀이공원) : <input type="text" id="tag2" name="tag2" value="${target.tag2}">
+                  태그3 (기타) : <input type="text" id="tag3" name="tag3" value="${target.tag3}">
                   <button type="submit">Submit</button>
                 </form>
               </div>
@@ -68,8 +68,9 @@
                 </form>
               </div>
             </div>
-            <br>
-            <hr>
+            <br style = "clear: left;">
+            <hr style = "clear: left;">
+            
           `
           $("#spotData").append(content)
         }
