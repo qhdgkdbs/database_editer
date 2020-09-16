@@ -28,7 +28,7 @@ const spotSchema = mongoose.Schema({
     tag2 : {
         type : String,
     },
-    tag3 : {
+    subDes : {
         type : String,
     },
     createdAt: {

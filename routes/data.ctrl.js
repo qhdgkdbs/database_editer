@@ -60,13 +60,13 @@ const update = (req,res) => {
  
         if(req.body.spot) data.spot = req.body.spot;
         if(req.body.des) data.des = req.body.des;
-        if(req.body.moreLink) data.moreLink = req.body.moreLink;
+        // if(req.body.moreLink) data.moreLink = req.body.moreLink;
         if(req.body.picLink) data.picLink = req.body.picLink;
         if(req.body.lat) data.lat = req.body.lat;
         if(req.body.lng) data.lng = req.body.lng;
-        if(req.body.tag1) data.tag1 = req.body.tag1;
-        if(req.body.tag2) data.tag2 = req.body.tag2;
-        if(req.body.tag3) data.tag3 = req.body.tag3;
+        // if(req.body.tag1) data.tag1 = req.body.tag1;
+        // if(req.body.tag2) data.tag2 = req.body.tag2;
+        // if(req.body.subDes) data.subDes = req.body.subDes;
 
         data.save( (err) => {
             if(err) res.status(500).json({error: 'failed to update'});
